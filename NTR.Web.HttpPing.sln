@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NTR.Web.HttpPing.Core", "NTR.Web.HttpPing.Core\NTR.Web.HttpPing.Core.vbproj", "{41B738E1-6FA3-4181-A2DC-280A13C571BF}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NTR.Web.HttpPing.Service", "NTR.Web.HttpPing.Service\NTR.Web.HttpPing.Service.vbproj", "{9D576531-A006-4688-8771-43C3D553B000}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NTR.Web.HttpPing.Service.Setup", "NTR.Web.HttpPing.Service.Setup\NTR.Web.HttpPing.Service.Setup.vdproj", "{AC670825-1300-4D4D-A193-140D3B36183C}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Debug|x64.ActiveCfg = Debug|x64
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Debug|x64.Build.0 = Debug|x64
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Debug|x86.ActiveCfg = Debug|x86
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Debug|x86.Build.0 = Debug|x86
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Release|x64.ActiveCfg = Release|x64
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Release|x64.Build.0 = Release|x64
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Release|x86.ActiveCfg = Release|x86
+		{41B738E1-6FA3-4181-A2DC-280A13C571BF}.Release|x86.Build.0 = Release|x86
+		{9D576531-A006-4688-8771-43C3D553B000}.Debug|x64.ActiveCfg = Debug|x64
+		{9D576531-A006-4688-8771-43C3D553B000}.Debug|x64.Build.0 = Debug|x64
+		{9D576531-A006-4688-8771-43C3D553B000}.Debug|x86.ActiveCfg = Debug|x86
+		{9D576531-A006-4688-8771-43C3D553B000}.Debug|x86.Build.0 = Debug|x86
+		{9D576531-A006-4688-8771-43C3D553B000}.Release|x64.ActiveCfg = Release|x64
+		{9D576531-A006-4688-8771-43C3D553B000}.Release|x64.Build.0 = Release|x64
+		{9D576531-A006-4688-8771-43C3D553B000}.Release|x86.ActiveCfg = Release|x86
+		{9D576531-A006-4688-8771-43C3D553B000}.Release|x86.Build.0 = Release|x86
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Debug|x64.ActiveCfg = Debug
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Debug|x64.Build.0 = Debug
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Debug|x86.ActiveCfg = Debug
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x64.ActiveCfg = Release
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x64.Build.0 = Release
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x86.ActiveCfg = Release
+		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x86.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+This project is coded in VB.NET upon the .NET Framework 4.
+The solution file is compatible with Visual Studio 2010 only.
+
+Please see the file localted at NTR.Web.HttpPing.Core/httpping.config for the configuartion of the system.
+
+You can download the source and compile it your self or can download the msi installer which will install the software as a windows service.

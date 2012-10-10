@@ -62,4 +62,6 @@
 
         Return SendMail([to], subject, body, True)
     End Function
+
+
 End Class

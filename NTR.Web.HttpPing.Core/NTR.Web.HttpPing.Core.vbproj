@@ -9,7 +9,7 @@
     </SchemaVersion>
     <ProjectGuid>{41B738E1-6FA3-4181-A2DC-280A13C571BF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>NTR.Web.HttpPing.Core.Main</StartupObject>
+    <StartupObject>NTR.Web.HttpPing.Core.PingConsole</StartupObject>
     <RootNamespace>NTR.Web.HttpPing.Core</RootNamespace>
     <AssemblyName>NTR.Web.HttpPing.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -100,7 +100,7 @@
     <Compile Include="Config\Config.vb" />
     <Compile Include="Http\HttpPinger.vb" />
     <Compile Include="Mail\SendMail.vb" />
-    <Compile Include="Main.vb" />
+    <Compile Include="PingConsole.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -119,7 +119,7 @@
     <Compile Include="Process\PingProcess.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Main_Main.sequencediagram.layout">
+    <EmbeddedResource Include="_Modeling\Main_Main.sequencediagram.layout">
       <DependentUpon>Main_Main.sequencediagram</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -130,12 +130,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="_Modeling\ClassDiagram.cd" />
     <None Include="httpping.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Main_Main.sequencediagram" />
+    <None Include="_Modeling\Main_Main.sequencediagram" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

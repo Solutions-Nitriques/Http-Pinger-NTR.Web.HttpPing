@@ -146,6 +146,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="_Modeling\ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NTR.Web.HttpPing.Core\NTR.Web.HttpPing.Core.vbproj">

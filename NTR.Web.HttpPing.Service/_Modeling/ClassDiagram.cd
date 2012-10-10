@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Comment CommentText="NTR.Web.HttpPing.Service">
+    <Position X="1.302" Y="0.521" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="NTR.Web.HttpPing.Core">
+    <Position X="5.719" Y="0.531" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="NTR.Web.HttpPing.Core">
+    <Position X="10.542" Y="0.542" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="NTR.Web.HttpPing.Service.PingService">
+    <Position X="0.75" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAEACAAAICAAAAAAAAAEAABAAAAAA=</HashCode>
+      <FileName>PingService.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Core.PingProcess">
+    <Position X="5.75" Y="1.75" Width="4" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="NTR.Web.HttpPing.Core.PingProcess.SiteProcessedEventHandler">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="NTR.Web.HttpPing.Core.PingProcess.SiteProcessedEventArgs">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Core.SendMail">
+    <Position X="10.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.ServiceProcess.ServiceBase" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

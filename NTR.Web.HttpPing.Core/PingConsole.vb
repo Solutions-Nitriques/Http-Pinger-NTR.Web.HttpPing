@@ -1,13 +1,16 @@
 ﻿Module PingConsole
 
-    Private WithEvents process As New PingProcess
+
+    Private xmlConfigLoader As IConfigLoader = New XmlConfigLoader("../../httpping.config")
+    Private _sendMailProvider As SendMail = New SendMail(_config.MailServerAddr, _config.MailServerPort)
+    Private WithEvents process As PingProcess = New PingProcess(xmlConfigLoader)
 
     Sub Main()
 
-        Dim file As String = process.GetDirectory + "../../httpping.config"
+
         Console.WriteLine("Config file in {0} loaded", file)
 
-        process.LaunchPing(file)
+        process.LaunchPing()
 
         Console.ReadLine()
 

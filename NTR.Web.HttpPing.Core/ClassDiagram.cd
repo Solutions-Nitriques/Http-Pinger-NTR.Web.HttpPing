@@ -19,7 +19,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAJhAAAAEAAgACAAAAQAAAIABAAAAAAAQAA=</HashCode>
+      <HashCode>AAAIAAAAAAJhAAAAEAAgACAAAAQAAAIAFAAAAAAAQAA=</HashCode>
       <FileName>Process\PingProcess.vb</FileName>
     </TypeIdentifier>
   </Class>
@@ -53,7 +53,7 @@
     </TypeIdentifier>
   </Class>
   <Module Name="NTR.Web.HttpPing.Core.Main">
-    <Position X="1.5" Y="4" Width="1.5" />
+    <Position X="2.5" Y="3.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Private" Collapsed="true" />
     </Compartments>

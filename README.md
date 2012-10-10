@@ -1,4 +1,4 @@
-# NTR.Web.HttpPing #
+# NTR.Web.HttpPing
 
 This project is coded in VB.NET upon the .NET Framework 4.  
 The solution file is compatible with Visual Studio 2010 only.

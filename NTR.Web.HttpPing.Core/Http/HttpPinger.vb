@@ -1,6 +1,6 @@
-﻿Friend Class HttpPinger
+﻿Friend Class HttpPinger : Implements IPinger
 
-    Public Function PingUrl(ByVal url As Uri, ByVal timeout As Integer, ByVal retries As Integer) As Boolean
+    Public Function PingUrl(ByVal url As Uri, ByVal timeout As Integer, ByVal retries As Integer) As Boolean Implements IPinger.PingUrl
         Dim ret As Boolean
         Dim tryCount As Integer
 

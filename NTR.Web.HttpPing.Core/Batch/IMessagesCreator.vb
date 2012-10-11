@@ -1,0 +1,4 @@
+﻿
+Interface IMessagesCreator
+
+End Interface

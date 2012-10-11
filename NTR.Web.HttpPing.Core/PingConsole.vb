@@ -1,23 +1,24 @@
-﻿Module PingConsole
+﻿Imports NTR.Web.HttpPing.Core.Process
+Imports NTR.Web.HttpPing.Core.MessagesProvider
+
+Module PingConsole
 
 
-    Private xmlConfigLoader As IConfigLoader = New XmlConfigLoader("../../httpping.config")
-    Private _sendMailProvider As SendMail = New SendMail(_config.MailServerAddr, _config.MailServerPort)
-    Private WithEvents process As PingProcess = New PingProcess(xmlConfigLoader)
+    Private _xmlConfigLoader As IConfigLoader = New XmlConfigLoader("../../httpping.config")
+    Private _messageProvider As IMessagesProvider(Of IConfigModel) = New SmtpMessagesProvider()
+    Private _process As PingProcess = New PingProcess(_xmlConfigLoader, _messageProvider)
 
     Sub Main()
 
-
-        Console.WriteLine("Config file in {0} loaded", file)
-
-        process.LaunchPing()
+        _process.StartPingProcess()
 
         Console.ReadLine()
 
-        process.StopPing()
+        _process.StopPingProcess()
+
     End Sub
 
-    Private Sub process_SiteProcessed(ByVal sender As Object, ByVal e As PingProcess.SiteProcessedEventArgs) Handles Process.SiteProcessed
-        Console.WriteLine("Url {0} : {1}", e.Url, e.Success)
-    End Sub
+    'Private Sub process_SiteProcessed(ByVal sender As Object, ByVal e As PingProcess.SiteProcessedEventArgs) Handles process.SiteProcessed
+    '    Console.WriteLine("Url {0} : {1}", e.Url, e.Success)
+    'End Sub
 End Module

@@ -97,13 +97,19 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Batch\BatchWorker.vb" />
+    <Compile Include="Batch\IPingBatchWork.vb" />
+    <Compile Include="Batch\IPingBatchWorker.vb" />
     <Compile Include="Config\ConfigLoader.vb" />
     <Compile Include="Config\ConfigModel.vb" />
     <Compile Include="Config\IConfigLoader.vb" />
     <Compile Include="Config\IConfigModel.vb" />
     <Compile Include="Http\HttpPinger.vb" />
-    <Compile Include="Mail\IMessageProvider.vb" />
-    <Compile Include="Mail\SmtpMessageProvider.vb" />
+    <Compile Include="Http\IPinger.vb" />
+    <Compile Include="Messages\IMessage.vb" />
+    <Compile Include="Messages\IMessagesProvider.vb" />
+    <Compile Include="Messages\MessageModel.vb" />
+    <Compile Include="Messages\SmtpMessagesProvider.vb" />
     <Compile Include="PingConsole.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

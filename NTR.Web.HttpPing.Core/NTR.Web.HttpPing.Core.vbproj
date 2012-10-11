@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Batch\BatchWorker.vb" />
+    <Compile Include="Messages\Core\AbstractMessagesWriter.vb" />
     <Compile Include="Batch\IPingBatchWork.vb" />
     <Compile Include="Batch\IPingBatchWorker.vb" />
     <Compile Include="Config\ConfigLoader.vb" />
@@ -106,10 +107,15 @@
     <Compile Include="Config\IConfigModel.vb" />
     <Compile Include="Http\HttpPinger.vb" />
     <Compile Include="Http\IPinger.vb" />
-    <Compile Include="Messages\IMessage.vb" />
-    <Compile Include="Messages\IMessagesProvider.vb" />
-    <Compile Include="Messages\MessageModel.vb" />
-    <Compile Include="Messages\SmtpMessagesProvider.vb" />
+    <Compile Include="Messages\Core\IMessage.vb" />
+    <Compile Include="Messages\Core\IMessagesProvider.vb" />
+    <Compile Include="Messages\Providers\Console\ConsoleMessagesProvider.vb" />
+    <Compile Include="Messages\Providers\Smtp\ISmtpMessagesToSelector.vb" />
+    <Compile Include="Messages\Models\MessageModel.vb" />
+    <Compile Include="Messages\Providers\Smtp\SimpleSmtpMessagesToSelector.vb" />
+    <Compile Include="Messages\Writers\SimpleMessagesWriter.vb" />
+    <Compile Include="Messages\Providers\Smtp\SmtpMessageModel.vb" />
+    <Compile Include="Messages\Providers\Smtp\SmtpMessagesProvider.vb" />
     <Compile Include="PingConsole.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

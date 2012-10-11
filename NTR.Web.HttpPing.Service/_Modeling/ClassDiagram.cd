@@ -12,28 +12,9 @@
   <Class Name="NTR.Web.HttpPing.Service.PingService">
     <Position X="0.75" Y="3.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAEACAAAICAAAAAAAAAEAABAAAAAA=</HashCode>
+      <HashCode>AAAAEAAAASAAAAAAEACAAAACAIAAAAAAAEAABAAAAAA=</HashCode>
       <FileName>PingService.vb</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="NTR.Web.HttpPing.Core.PingProcess">
-    <Position X="5.75" Y="1.75" Width="4" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Delegate Name="NTR.Web.HttpPing.Core.PingProcess.SiteProcessedEventHandler">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="NTR.Web.HttpPing.Core.PingProcess.SiteProcessedEventArgs">
-        <TypeIdentifier />
-      </Class>
-    </NestedTypes>
-    <TypeIdentifier />
-  </Class>
-  <Class Name="NTR.Web.HttpPing.Core.SendMail">
-    <Position X="10.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier />
   </Class>
   <Class Name="System.ServiceProcess.ServiceBase" Collapsed="true">
     <Position X="1.25" Y="1.75" Width="1.75" />

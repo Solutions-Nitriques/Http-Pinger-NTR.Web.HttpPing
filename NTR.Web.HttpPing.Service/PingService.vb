@@ -1,12 +1,12 @@
 ﻿Imports NTR.Web.HttpPing.Core
 Imports NTR.Web.HttpPing.Core.Process
-Imports NTR.Web.HttpPing.Core.MessagesProvider
+Imports NTR.Web.HttpPing.Core.Messages
 
 Public Class PingService
 
 
     Private _xmlConfigLoader As IConfigLoader = New XmlConfigLoader("httpping.config")
-    Private _messageProvider As IMessagesProvider(Of IConfigModel) = New SmtpMessagesProvider()
+    Private _messageProvider As AbstractMessagesProvider = New SmtpMessagesProvider(New SimpleMessagesWriter(), New SimpleSmtpMessagesToSelector())
     Private _process As New PingProcess(_xmlConfigLoader, _messageProvider)
 
     Protected Overrides Sub OnStart(ByVal args() As String)

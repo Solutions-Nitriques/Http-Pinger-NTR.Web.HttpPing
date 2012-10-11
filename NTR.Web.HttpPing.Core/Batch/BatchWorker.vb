@@ -1,15 +1,17 @@
-﻿Public Class PingBatchWorker : Implements IPingBatchWorker
+﻿Imports NTR.Web.HttpPing.Core.Messages
 
-    Private _currentWork As IPingBatchWork
+Public Class PingBatchWorker : Implements IPingBatchWorker
 
-    Private _pinger As IPinger
-    Private _messagesProvider As IMessagesProvider(Of IPingBatchWork)
-    Private _messagesCreator As IMessagesCreator
+#Region "Public Ctor"
 
-    Public Sub New(pinger As IPinger, messagesProvider As IMessagesProvider(Of IPingBatchWork), messagesCreator As IMessagesCreator)
+    Public Sub New(ByVal pinger As IPinger, ByVal messagesProvider As AbstractMessagesProvider, ByVal messagesCreator As AbstractMessagesWriter)
         _pinger = pinger
         _messagesProvider = messagesProvider
     End Sub
+
+#End Region
+
+#Region "Public Property"
 
     Public ReadOnly Property IsRunning As Boolean Implements IPingBatchWorker.IsRunning
         Get
@@ -17,8 +19,13 @@
         End Get
     End Property
 
-    Public Sub RunBatch(work As IPingBatchWork) Implements IPingBatchWorker.RunBatch
+#End Region
+
+#Region "Public methodes"
+
+    Public Sub RunBatch(ByVal work As IPingBatchWork) Implements IPingBatchWorker.RunBatch
         If (Not IsRunning) Then
+
             ''Assign work
             _currentWork = work
 
@@ -32,10 +39,23 @@
         End If
     End Sub
 
-    Private Sub ProcessOne(ByVal url As Uri, timeout As Integer, maxRetry As Integer, maxEmailSend As Integer)
+#End Region
+
+#Region "Private Section"
+
+    Private _currentWork As IPingBatchWork
+
+    Private _pinger As IPinger
+    Private _messagesProvider As AbstractMessagesProvider
+    Private _messagesCreator As AbstractMessagesWriter
+
+    Private Sub ProcessOne(ByVal url As Uri, ByVal timeout As Integer, ByVal maxRetry As Integer, ByVal maxEmailSend As Integer)
         Try
             ' Process the request
             Dim ret As Boolean = _pinger.PingUrl(url, timeout, maxRetry)
+
+
+            '    Console.WriteLine("Url {0} : {1}", e.Url, e.Success)
 
             Dim _errors As New Dictionary(Of String, PingError)
 
@@ -80,9 +100,15 @@
         End Try
     End Sub
 
+#End Region
+
+#Region "Private Inner Class"
+
     Private Class PingError
         Public Property Url As Uri
         Public Property Count As Integer
     End Class
+
+#End Region
 
 End Class

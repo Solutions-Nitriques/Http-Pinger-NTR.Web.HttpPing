@@ -1,12 +1,14 @@
-﻿Namespace Process
+﻿Imports NTR.Web.HttpPing.Core.Messages
+
+Namespace Process
 
     Public Class PingProcess
 
 #Region "Public Ctor"
 
-        Public Sub New(configLoader As IConfigLoader, sendMailProvider As IMessagesProvider(Of IConfigModel))
+        Public Sub New(ByVal configLoader As IConfigLoader, ByVal messagesProvider As AbstractMessagesProvider)
             _configLoader = configLoader
-            _messagesProvider = sendMailProvider
+            _messagesProvider = messagesProvider
         End Sub
 
 #End Region
@@ -14,19 +16,15 @@
 #Region "Public methode"
 
         Public Sub StartPingProcess()
-            If _configModel Is Nothing Then
-                _configModel = _configLoader.LoadConfigs()
-            End If
+
+            Init()
 
             StartRunningPing()
 
         End Sub
 
         Public Sub StopPingProcess()
-            If _timer.Enabled Then
-                _timer.Stop()
-                ''_sendMailProvider.SendProcessStopping(_config.AdminsEmail)
-            End If
+            StopRunningPing()
         End Sub
 
 #End Region
@@ -47,7 +45,9 @@
         Private _configLoader As IConfigLoader
 
         ''Dependance for sending email
-        Private _messagesProvider As IMessagesProvider(Of IConfigModel)
+        Private _messagesProvider As AbstractMessagesProvider
+
+        Private _messagesWriter As AbstractMessagesWriter
 
         ''The config model for the process, only accessible from descendant class if we want other behavior, will be instanciated by the config loader
         Private _configModel As IConfigModel
@@ -58,13 +58,26 @@
         ''The batch worker executing the job
         Private _batchWorker As PingBatchWorker
 
+        Private Sub Init()
+            ''Init system
+            _configModel = _configLoader.LoadConfigs()
+            _messagesProvider.Init(_configModel)
+        End Sub
+
         Private Sub StartRunningPing()
             If Not _timer.Enabled Then
                 _timer.Interval = _configModel.Interval
                 _timer.Start()
-                ''_sendMailProvider.SendProcessStarting(_config.AdminsEmail)
-            End If
 
+                _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Starting, True)
+            End If
+        End Sub
+
+        Private Sub StopRunningPing()
+            If _timer.Enabled Then
+                _timer.Stop()
+                _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Stopping, False)
+            End If
         End Sub
 
         Private Sub _timer_Elapsed(ByVal sender As Object, ByVal e As System.Timers.ElapsedEventArgs) Handles _timer.Elapsed

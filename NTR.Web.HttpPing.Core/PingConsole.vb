@@ -1,11 +1,11 @@
 ﻿Imports NTR.Web.HttpPing.Core.Process
-Imports NTR.Web.HttpPing.Core.MessagesProvider
+Imports NTR.Web.HttpPing.Core.Messages
 
 Module PingConsole
 
 
     Private _xmlConfigLoader As IConfigLoader = New XmlConfigLoader("../../httpping.config")
-    Private _messageProvider As IMessagesProvider(Of IConfigModel) = New SmtpMessagesProvider()
+    Private _messageProvider As New ConsoleMessagesProvider(New SimpleMessagesWriter())
     Private _process As PingProcess = New PingProcess(_xmlConfigLoader, _messageProvider)
 
     Sub Main()
@@ -18,7 +18,4 @@ Module PingConsole
 
     End Sub
 
-    'Private Sub process_SiteProcessed(ByVal sender As Object, ByVal e As PingProcess.SiteProcessedEventArgs) Handles process.SiteProcessed
-    '    Console.WriteLine("Url {0} : {1}", e.Url, e.Success)
-    'End Sub
 End Module

@@ -1,4 +1,0 @@
-﻿
-Interface IMessagesCreator
-
-End Interface

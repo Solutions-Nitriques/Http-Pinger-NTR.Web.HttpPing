@@ -1,4 +1,6 @@
-﻿Namespace Messages
+﻿Imports NTR.Web.HttpPing.Config
+
+Namespace Messages
 
     Public Class ConsoleMessagesProvider : Inherits AbstractMessagesProvider
 
@@ -6,11 +8,11 @@
             MyBase.New(messagesWriter)
         End Sub
 
-        Public Overrides Sub Init(ByVal config As IConfigModel)
+        Friend Overrides Sub Init(ByVal config As IConfigModel)
             'nothing to do
         End Sub
 
-        Protected Friend Overrides Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
+        Friend Overrides Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
             Console.WriteLine(message.Body)
             Return True
         End Function

@@ -1,6 +1,10 @@
-﻿Public Interface IPingBatchWorker
+﻿Namespace Workers
 
-    ReadOnly Property IsRunning As Boolean
-    Sub RunBatch(work As IPingBatchWork)
+    Public Interface IPingBatchWorker
 
-End Interface
+        ReadOnly Property IsRunning As Boolean
+        Sub RunBatch(work As IPingBatchWork)
+
+    End Interface
+
+End Namespace

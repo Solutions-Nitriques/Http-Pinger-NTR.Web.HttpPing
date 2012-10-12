@@ -1,4 +1,5 @@
-﻿
+﻿Imports NTR.Web.HttpPing.Config
+
 Namespace Messages
 
     Public Interface ISmtpMessagesToSelector

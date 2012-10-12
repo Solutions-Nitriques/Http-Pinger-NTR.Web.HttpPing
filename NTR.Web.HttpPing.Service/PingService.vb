@@ -1,6 +1,6 @@
-﻿Imports NTR.Web.HttpPing.Core
-Imports NTR.Web.HttpPing.Core.Process
-Imports NTR.Web.HttpPing.Core.Messages
+﻿Imports NTR.Web.HttpPing.Process
+Imports NTR.Web.HttpPing.Messages
+Imports NTR.Web.HttpPing.Config
 
 Public Class PingService
 

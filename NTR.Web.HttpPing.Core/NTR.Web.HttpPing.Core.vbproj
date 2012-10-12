@@ -9,9 +9,9 @@
     </SchemaVersion>
     <ProjectGuid>{41B738E1-6FA3-4181-A2DC-280A13C571BF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>NTR.Web.HttpPing.Core.PingConsole</StartupObject>
-    <RootNamespace>NTR.Web.HttpPing.Core</RootNamespace>
-    <AssemblyName>NTR.Web.HttpPing</AssemblyName>
+    <StartupObject>NTR.Web.HttpPing.PingConsole</StartupObject>
+    <RootNamespace>NTR.Web.HttpPing</RootNamespace>
+    <AssemblyName>NTR.Web.HttpPing.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -24,7 +24,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>NTR.Web.HttpPing.xml</DocumentationFile>
+    <DocumentationFile>NTR.Web.HttpPing.Core.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -37,7 +37,7 @@
     <DefineTrace>false</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>NTR.Web.HttpPing.xml</DocumentationFile>
+    <DocumentationFile>NTR.Web.HttpPing.Core.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -60,7 +60,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DocumentationFile>NTR.Web.HttpPing.xml</DocumentationFile>
+    <DocumentationFile>NTR.Web.HttpPing.Core.xml</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -69,7 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
-    <DocumentationFile>NTR.Web.HttpPing.xml</DocumentationFile>
+    <DocumentationFile>NTR.Web.HttpPing.Core.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>None</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -101,18 +101,20 @@
     <Compile Include="Messages\Core\AbstractMessagesWriter.vb" />
     <Compile Include="Batch\IPingBatchWork.vb" />
     <Compile Include="Batch\IPingBatchWorker.vb" />
-    <Compile Include="Config\ConfigLoader.vb" />
+    <Compile Include="Config\XmlConfigLoader.vb" />
     <Compile Include="Config\ConfigModel.vb" />
     <Compile Include="Config\IConfigLoader.vb" />
     <Compile Include="Config\IConfigModel.vb" />
     <Compile Include="Http\HttpPinger.vb" />
     <Compile Include="Http\IPinger.vb" />
     <Compile Include="Messages\Core\IMessage.vb" />
-    <Compile Include="Messages\Core\IMessagesProvider.vb" />
+    <Compile Include="Messages\Core\AbstractMessagesProvider.vb" />
+    <Compile Include="Messages\Core\ISmtpMessage.vb" />
     <Compile Include="Messages\Providers\Console\ConsoleMessagesProvider.vb" />
     <Compile Include="Messages\Providers\Smtp\ISmtpMessagesToSelector.vb" />
     <Compile Include="Messages\Models\MessageModel.vb" />
     <Compile Include="Messages\Providers\Smtp\SimpleSmtpMessagesToSelector.vb" />
+    <Compile Include="Messages\Writers\ConsoleMessageWriter.vb" />
     <Compile Include="Messages\Writers\SimpleMessagesWriter.vb" />
     <Compile Include="Messages\Providers\Smtp\SmtpMessageModel.vb" />
     <Compile Include="Messages\Providers\Smtp\SmtpMessagesProvider.vb" />

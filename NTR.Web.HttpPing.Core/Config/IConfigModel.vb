@@ -1,4 +1,6 @@
-﻿Namespace Config
+﻿Imports NTR.Web.HttpPing.Workers
+
+Namespace Config
 
     Public Interface IConfigModel : Inherits IPingBatchWork
 

@@ -1,5 +1,9 @@
-﻿Public Interface IConfigLoader
+﻿Namespace Config
 
-    Function LoadConfigs() As IConfigModel
+    Public Interface IConfigLoader
 
-End Interface
+        Function LoadConfigs() As IConfigModel
+
+    End Interface
+
+End Namespace

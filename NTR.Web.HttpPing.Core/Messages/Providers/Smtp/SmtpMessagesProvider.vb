@@ -1,4 +1,5 @@
 ﻿Imports System.Net.Mail
+Imports NTR.Web.HttpPing.Config
 
 Namespace Messages
 
@@ -15,7 +16,7 @@ Namespace Messages
 
 #Region "Public methodes"
 
-        Public Overrides Sub Init(ByVal config As IConfigModel)
+        Friend Overrides Sub Init(ByVal config As IConfigModel)
 
             _smtpClient = New SmtpClient(config.MailServerAddr, config.MailServerPort)
             _smtpMessagesToSelector.Init(config)
@@ -32,7 +33,7 @@ Namespace Messages
 
 #Region "Functions"
 
-        Protected Friend Overrides Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
+        Friend Overrides Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
 
             ''Result for sync call
             Dim result As Boolean = False

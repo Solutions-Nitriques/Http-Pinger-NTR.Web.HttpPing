@@ -1,24 +1,119 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Comment CommentText="NTR.Web.HttpPing.Service">
-    <Position X="1.302" Y="0.521" Height="0.75" Width="1.7" />
+    <Position X="1.812" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="NTR.Web.HttpPing.Core">
-    <Position X="5.719" Y="0.531" Height="0.75" Width="1.7" />
+    <Position X="6.229" Y="0.51" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="NTR.Web.HttpPing.Core">
-    <Position X="10.542" Y="0.542" Height="0.75" Width="1.7" />
+    <Position X="10.552" Y="0.521" Height="0.75" Width="1.7" />
   </Comment>
   <Class Name="NTR.Web.HttpPing.Service.PingService">
-    <Position X="0.75" Y="3.25" Width="2.75" />
+    <Position X="0.75" Y="3.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAASAAAAAAEACAAAACAIAAAAAAAEAABAAAAAA=</HashCode>
       <FileName>PingService.vb</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.ServiceProcess.ServiceBase" Collapsed="true">
-    <Position X="1.25" Y="1.75" Width="1.75" />
+    <Position X="1.25" Y="2.25" Width="1.75" />
     <TypeIdentifier />
   </Class>
+  <Class Name="NTR.Web.HttpPing.Process.PingProcess">
+    <Position X="3.75" Y="3.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Config.XmlConfigLoader" Collapsed="true">
+    <Position X="6.75" Y="6" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Config.ConfigModel" Collapsed="true">
+    <Position X="12.25" Y="6" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.AbstractMessagesProvider">
+    <Position X="6.75" Y="6.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.SmtpMessagesProvider">
+    <Position X="4" Y="14.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.AbstractMessagesWriter">
+    <Position X="12.25" Y="6.75" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.SimpleMessagesWriter" Collapsed="true">
+    <Position X="12.25" Y="9" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.SmtpMessageModel" Collapsed="true">
+    <Position X="17.75" Y="16.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.MessageModel" Collapsed="true">
+    <Position X="17.75" Y="9" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.SimpleSmtpMessagesToSelector" Collapsed="true">
+    <Position X="14.25" Y="16.75" Width="3.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Messages.ConsoleMessagesProvider" Collapsed="true">
+    <Position X="6.75" Y="9" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Workers.PingBatchWorker" Collapsed="true">
+    <Position X="6.75" Y="14" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NTR.Web.HttpPing.Pinger.HttpPinger" Collapsed="true">
+    <Position X="9.75" Y="14" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="NTR.Web.HttpPing.Config.IConfigLoader">
+    <Position X="6.75" Y="3.75" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Config.IConfigModel">
+    <Position X="9.75" Y="3.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Workers.IPingBatchWork">
+    <Position X="9.75" Y="10.25" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Messages.IMessage">
+    <Position X="17.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Messages.ISmtpMessage">
+    <Position X="17.75" Y="15" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Messages.ISmtpMessagesToSelector">
+    <Position X="14.25" Y="15" Width="3.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Workers.IPingBatchWorker">
+    <Position X="6.75" Y="10.25" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="NTR.Web.HttpPing.Pinger.IPinger">
+    <Position X="9.75" Y="12.25" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="NTR.Web.HttpPing.Messages.ProcessMessageType">
+    <Position X="19.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier />
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

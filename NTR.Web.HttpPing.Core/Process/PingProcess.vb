@@ -1,4 +1,6 @@
-﻿Imports NTR.Web.HttpPing.Core.Messages
+﻿Imports NTR.Web.HttpPing.Messages
+Imports NTR.Web.HttpPing.Config
+Imports NTR.Web.HttpPing.Workers
 
 Namespace Process
 
@@ -17,25 +19,15 @@ Namespace Process
 
         Public Sub StartPingProcess()
 
-            Init()
+            Me.Init()
 
-            StartRunningPing()
+            Me.Run()
 
         End Sub
 
         Public Sub StopPingProcess()
-            StopRunningPing()
+            Me.Stop()
         End Sub
-
-#End Region
-
-#Region "Protected property"
-
-        Protected ReadOnly Property Config As IConfigModel
-            Get
-                Return _configModel
-            End Get
-        End Property
 
 #End Region
 
@@ -55,8 +47,8 @@ Namespace Process
         ''The timer used for starting the next BatchWorker if available
         Private WithEvents _timer As New Timers.Timer
 
-        ''The batch worker executing the job
-        Private _batchWorker As PingBatchWorker
+        ''The batch worker executing the job 
+        Private _batchWorker As IPingBatchWorker
 
         Private Sub Init()
             ''Init system
@@ -64,7 +56,7 @@ Namespace Process
             _messagesProvider.Init(_configModel)
         End Sub
 
-        Private Sub StartRunningPing()
+        Private Sub Run()
             If Not _timer.Enabled Then
                 _timer.Interval = _configModel.Interval
                 _timer.Start()
@@ -73,7 +65,7 @@ Namespace Process
             End If
         End Sub
 
-        Private Sub StopRunningPing()
+        Private Sub [Stop]()
             If _timer.Enabled Then
                 _timer.Stop()
                 _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Stopping, False)
@@ -86,7 +78,7 @@ Namespace Process
                 _batchWorker.RunBatch(_configModel)
             Else
                 ''skip this run, queue a new one with a new timer
-                StartRunningPing()
+                Run()
             End If
         End Sub
 

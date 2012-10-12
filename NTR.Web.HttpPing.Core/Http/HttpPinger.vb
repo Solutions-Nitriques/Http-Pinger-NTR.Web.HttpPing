@@ -1,33 +1,37 @@
-﻿Friend Class HttpPinger : Implements IPinger
+﻿Namespace Pinger
 
-    Public Function PingUrl(ByVal url As Uri, ByVal timeout As Integer, ByVal retries As Integer) As Boolean Implements IPinger.PingUrl
-        Dim ret As Boolean
-        Dim tryCount As Integer
+    Public Class HttpPinger : Implements IPinger
 
-        Do While Not ret AndAlso tryCount < retries
-            Try
-                Dim request As Net.HttpWebRequest = DirectCast(Net.HttpWebRequest.CreateDefault(url), Net.HttpWebRequest)
-                request.Timeout = timeout
-                request.Method = "HEAD"
+        Public Function PingUrl(ByVal url As Uri, ByVal timeout As Integer, ByVal retries As Integer) As Boolean Implements IPinger.PingUrl
+            Dim ret As Boolean
+            Dim tryCount As Integer
 
-                Dim response As Net.HttpWebResponse = DirectCast(request.GetResponse, Net.HttpWebResponse)
+            Do While Not ret AndAlso tryCount < retries
+                Try
+                    Dim request As Net.HttpWebRequest = DirectCast(Net.HttpWebRequest.CreateDefault(url), Net.HttpWebRequest)
+                    request.Timeout = timeout
+                    request.Method = "HEAD"
 
-                ret = (response.StatusCode = Net.HttpStatusCode.OK)
+                    Dim response As Net.HttpWebResponse = DirectCast(request.GetResponse, Net.HttpWebResponse)
 
-                response.Close()
+                    ret = (response.StatusCode = Net.HttpStatusCode.OK)
 
-            Catch ex As Exception
-                ret = False
-            Finally
-                tryCount += 1
+                    response.Close()
 
-                If Not ret Then
-                    System.Threading.Thread.Sleep(800)
-                End If
-            End Try
-        Loop
+                Catch ex As Exception
+                    ret = False
+                Finally
+                    tryCount += 1
 
-        Return ret
-    End Function
+                    If Not ret Then
+                        System.Threading.Thread.Sleep(800)
+                    End If
+                End Try
+            Loop
 
-End Class
+            Return ret
+        End Function
+
+    End Class
+
+End Namespace

@@ -9,10 +9,4 @@ Namespace Messages
 
     End Interface
 
-    Public Interface ISmtpMessage : Inherits IMessage
-
-        ReadOnly Property [To] As String
-
-    End Interface
-
 End Namespace

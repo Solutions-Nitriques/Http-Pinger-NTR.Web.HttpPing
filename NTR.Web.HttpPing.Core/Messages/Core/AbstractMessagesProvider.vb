@@ -1,4 +1,5 @@
-﻿
+﻿Imports NTR.Web.HttpPing.Config
+
 Namespace Messages
 
     Public MustInherit Class AbstractMessagesProvider
@@ -9,15 +10,15 @@ Namespace Messages
             _messagesWriter = messagesWriter
         End Sub
 
-        Public ReadOnly Property Writer As AbstractMessagesWriter
+        Friend ReadOnly Property Writer As AbstractMessagesWriter
             Get
                 Return _messagesWriter
             End Get
         End Property
 
-        Public MustOverride Sub Init(ByVal config As IConfigModel)
+        Friend MustOverride Sub Init(ByVal config As IConfigModel)
 
-        Protected Friend MustOverride Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
+        Friend MustOverride Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
 
     End Class
 

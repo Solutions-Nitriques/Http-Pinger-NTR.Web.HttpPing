@@ -23,33 +23,64 @@ Public Class SmtpMessagesFilter_TimeLimit : Implements IMessagesFilter
         Return True
     End Function
 
-    Private _lastEmailSend As DateTime = DateTime.MinValue
-    Private _lastEmailSendCount As Integer
+    Private _lastErrorEmailSend As DateTime = DateTime.MinValue
+    Private _lastWorkResultErrorEmailSend As IWorkResult
 
     Public Function FilterWorkStatusMessage(ByVal workResult As IWorkResult, ByVal lastWorkResult As IWorkResult, ByVal config As IConfigModel) As Boolean Implements IMessagesFilter.FilterWorkStatusMessage
-        Dim result As Boolean = False
-        Dim filterResult As Boolean = False
+        'Dim result As Boolean = False
+        Dim hasSiteGoingUp As Boolean = False
+        Dim hasErrorEmail As Boolean = False
         Dim timeLimitSubset As IWorkResult = workResult.CreateTimeLimitSubsetWorkResult(lastWorkResult, config.UrlTimeLimit)
+        Dim hasUrlInErrorOverTimeLimit As Boolean = timeLimitSubset.UrlResults.Count > 0
 
-        If (lastWorkResult IsNot Nothing) Then
-            filterResult = timeLimitSubset.UrlResults.Count > 0
+        ''Check if we have site going up from last error send
+        If (_lastWorkResultErrorEmailSend IsNot Nothing) Then
+            'we have sended an email with error
+            ''Check if we have site going up
+
+            If _lastWorkResultErrorEmailSend.BadUrlResults.Intersect(workResult.GoodUrlResults).Count > 0 Then
+                'We have site going up
+                hasSiteGoingUp = True
+
+                'update the list
+                _lastWorkResultErrorEmailSend = workResult
+            End If
         End If
 
-        If (filterResult) Then
-            If (_lastEmailSend = DateTime.MinValue OrElse _lastEmailSendCount <> timeLimitSubset.UrlResults.Count) Then
-                _lastEmailSend = Now
-                result = filterResult
-                _lastEmailSendCount = timeLimitSubset.UrlResults.Count
+        ''Check TimeLimit
+        If (hasUrlInErrorOverTimeLimit) Then
+            ''we have url over the time limit
+
+            ''Check if we need to send an email
+            If (_lastErrorEmailSend = DateTime.MinValue) Then
+                ''We did not already send an email
+                ''we need to send an email
+                hasErrorEmail = True
+            End If
+            If (_lastErrorEmailSend.AddHours(6) < Now) Then
+                'We sended an email 6 hours ago and still have to send a new one
+                hasErrorEmail = True
+            End If
+            If (_lastWorkResultErrorEmailSend IsNot Nothing AndAlso _lastWorkResultErrorEmailSend.CreateTimeLimitSubsetWorkResult(lastWorkResult, config.UrlTimeLimit).BadUrlResults.Count <> timeLimitSubset.BadUrlResults.Count) Then
+                'the count is different
+                hasErrorEmail = True
+            End If
+
+            If (hasErrorEmail) Then
+                _lastErrorEmailSend = Now
+                _lastWorkResultErrorEmailSend = workResult
             End If
         Else
-            _lastEmailSend = DateTime.MinValue
-            _lastEmailSendCount = 0
+            ''No url are over the timelimite
+            ''Reset error
+            _lastErrorEmailSend = DateTime.MinValue
+            _lastWorkResultErrorEmailSend = Nothing
         End If
-        Return result
+        Return (hasSiteGoingUp OrElse hasErrorEmail)
     End Function
 
     Public Function FilterUrlStatusMessage(ByVal urlResult As IPingUrlResult) As Boolean Implements IMessagesFilter.FilterUrlStatusMessage
-        Return True
+        Return False
     End Function
 
 End Class

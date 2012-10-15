@@ -19,7 +19,9 @@ Module PingConsole
     End Sub
 
     Private Sub Init()
-
+        'Dim _xmlConfigLoader As IConfigLoader = New XmlConfigLoader("httpping.config")
+        'Dim _messageProvider As AbstractMessagesProvider = New SmtpMessagesProvider(New SmtpTextMessagesWriter_TimeLimit(New SmtpMessagesFilter_TimeLimit()), New SimpleSmtpMessagesToSelector())
+        '_process = New PingProcess(_xmlConfigLoader, _messageProvider)
         '' Url to Test
         Dim urls As New Collections.ObjectModel.Collection(Of Uri)
         urls.Add(New Uri("http://www.google.com"))
@@ -45,8 +47,8 @@ Module PingConsole
         Dim _messagesToSelector As ISmtpMessagesToSelector = New SimpleSmtpMessagesToSelector()
 
         '---- MessageProvider
-        Dim _messageProvider As AbstractMessagesProvider = New ConsoleMessagesProvider(_messagesWriter)
-        'Dim _messageProvider As AbstractMessagesProvider = New SmtpMessagesProvider(_messagesWriter, _messagesToSelector)
+        'Dim _messageProvider As AbstractMessagesProvider = New ConsoleMessagesProvider(_messagesWriter)
+        Dim _messageProvider As AbstractMessagesProvider = New SmtpMessagesProvider(_messagesWriter, _messagesToSelector)
 
         '---- The real process
         _process = New PingProcess(_configLoader, _messageProvider)

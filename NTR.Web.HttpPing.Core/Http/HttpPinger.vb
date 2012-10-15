@@ -6,10 +6,12 @@
             Dim lastStatusCode As Net.HttpStatusCode
             Dim tryCount As Integer
             Dim e As Exception = Nothing
-            Dim retry As Boolean
+            Dim retry As Boolean = True
 
             Do While retry AndAlso tryCount < maxRetries
                 Try
+                    ''Clean previous try
+                    e = Nothing
                     ''Prepare request
                     Dim request As Net.HttpWebRequest = DirectCast(Net.HttpWebRequest.CreateDefault(url), Net.HttpWebRequest)
                     request.AllowAutoRedirect = True

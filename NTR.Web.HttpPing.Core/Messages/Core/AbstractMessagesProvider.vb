@@ -18,6 +18,7 @@ Namespace Messages
         End Property
 
         Friend Sub Init(ByVal Config As IConfigModel)
+            Initialisation(Config)
             _messagesWriter.Init(Me, Config)
         End Sub
 

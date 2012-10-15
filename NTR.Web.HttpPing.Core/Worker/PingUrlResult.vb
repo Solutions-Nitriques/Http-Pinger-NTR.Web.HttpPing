@@ -56,6 +56,15 @@ Namespace Workers
 
         End Sub
 
+        Public Overrides Function Equals(ByVal obj As Object) As Boolean
+            Dim tObj As IPingUrlResult = TryCast(obj, IPingUrlResult)
+            If (tObj IsNot Nothing) Then
+                Return tObj.Url = Me.Url
+            Else
+                Return MyBase.Equals(obj)
+            End If
+        End Function
+
     End Class
 
 End Namespace

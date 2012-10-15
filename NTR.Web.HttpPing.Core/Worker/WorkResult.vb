@@ -72,6 +72,4 @@ Public Class WorkResult : Implements IWorkResult
                                                                                    End Function
 
 
-
-
 End Class

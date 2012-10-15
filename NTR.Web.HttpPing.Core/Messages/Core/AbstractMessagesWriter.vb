@@ -85,6 +85,16 @@ Namespace Messages
             Next
         End Sub
 
+        Protected Sub WriteSiteListWithStatus(ByVal body As StringBuilder, ByVal list As IEnumerable(Of KeyValuePair(Of Uri, IPingUrlResult)))
+            For Each it As KeyValuePair(Of Uri, IPingUrlResult) In list
+                body.AppendFormat("  {0} :").AppendLine()
+                body.AppendFormat("--HttpStatus : {1}", it.Value.PingerResult.HttpResult).AppendLine()
+                If (it.Value.PingerResult.Exception IsNot Nothing) Then
+                    body.AppendFormat("--Exception : {1}", it.Value.PingerResult.Exception.Message).AppendLine()
+                End If
+            Next
+        End Sub
+
         Protected ReadOnly Property Config As IConfigModel
             Get
                 Return _config

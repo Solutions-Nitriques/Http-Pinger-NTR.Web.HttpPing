@@ -16,11 +16,9 @@ Namespace Messages
 
 #Region "Public methodes"
 
-        Friend Overrides Sub Init(ByVal config As IConfigModel)
-
+        Protected Overrides Sub Initialisation(ByVal config As IConfigModel)
             _smtpClient = New SmtpClient(config.MailServerAddr, config.MailServerPort)
             _smtpMessagesToSelector.Init(config)
-
         End Sub
 
 #End Region

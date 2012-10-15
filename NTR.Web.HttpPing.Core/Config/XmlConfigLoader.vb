@@ -6,7 +6,7 @@ Namespace Config
         Private configFilePath As String
 
         Public Sub New(Optional ByVal configFileName As String = "")
-            Me.configFilePath = GetDirectory() + configFilePath
+            Me.configFilePath = GetDirectory() + configFileName
         End Sub
 
 #Region "Public Function"
@@ -21,37 +21,44 @@ Namespace Config
             Dim node As Xml.XmlNode
 
             ''Load defaul Value
-            Dim _timeout As Integer
-            Dim _interval As Double
-            Dim _maxRetry As Integer
-            Dim _maxEmailSend As Integer
+            Dim _processInterval As Long = 180000
+            Dim _pingTimeout As Integer = 500
+            Dim _pingRetryInterval As Integer = 800
+            Dim _pingMaxRetry As Integer = 3
             Dim _mailServerAddr As String = Nothing
-            Dim _mailServerPort As Integer
+            Dim _mailServerPort As Integer = 25
             Dim _adminsEmail As String = Nothing
+            Dim _urlTimeLimit As Integer = 5  'Minutes
             Dim _Urls As New Collections.ObjectModel.Collection(Of Uri)
 
             ''Load file
             doc.Load(configFilePath)
 
             ''Merge file with default value
-            node = doc.SelectSingleNode("/config/timeout")
+            node = doc.SelectSingleNode("/config/processInterval")
             If node IsNot Nothing Then
-                Integer.TryParse(node.InnerText, _timeout)
+                Long.TryParse(node.InnerText, _processInterval)
             End If
 
-            node = doc.SelectSingleNode("/config/interval")
+            ''Merge file with default value
+            node = doc.SelectSingleNode("/config/urlTimeLimit")
             If node IsNot Nothing Then
-                Double.TryParse(node.InnerText, _interval)
+                Integer.TryParse(node.InnerText, _urlTimeLimit)
             End If
 
-            node = doc.SelectSingleNode("/config/maxRetry")
+            node = doc.SelectSingleNode("/config/pingTimeout")
             If node IsNot Nothing Then
-                Integer.TryParse(node.InnerText, _maxRetry)
+                Integer.TryParse(node.InnerText, _pingTimeout)
             End If
 
-            node = doc.SelectSingleNode("/config/maxEmailSend")
+            node = doc.SelectSingleNode("/config/pingRetryInterval")
             If node IsNot Nothing Then
-                Integer.TryParse(node.InnerText, _maxEmailSend)
+                Integer.TryParse(node.InnerText, _pingRetryInterval)
+            End If
+
+            node = doc.SelectSingleNode("/config/pingMaxRetry")
+            If node IsNot Nothing Then
+                Integer.TryParse(node.InnerText, _pingMaxRetry)
             End If
 
             node = doc.SelectSingleNode("/config/mailServer/addr")
@@ -75,7 +82,7 @@ Namespace Config
             Next
 
             ''Create the new model and return it
-            Return ConfigModel.createModel(_Urls, _timeout, _adminsEmail, _interval, _maxRetry, _maxEmailSend, _mailServerAddr, _mailServerPort)
+            Return ConfigModel.createModel(_processInterval, _Urls, _urlTimeLimit, _adminsEmail, _pingTimeout, _pingRetryInterval, _pingMaxRetry, _mailServerAddr, _mailServerPort)
         End Function
 
 #End Region

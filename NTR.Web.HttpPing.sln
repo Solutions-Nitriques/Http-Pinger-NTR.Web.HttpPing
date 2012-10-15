@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NTR.Web.HttpPing.Service.Se
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modeling", "Modeling", "{47E861B9-AE0C-49E0-8F63-7D6D99000BA6}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NTR.Web.HttpPing.Console", "NTR.Web.HttpPing.Console\NTR.Web.HttpPing.Console.vbproj", "{A2538634-371F-485E-B17C-D5568E662CF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,12 @@ Global
 		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x64.Build.0 = Release
 		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x86.ActiveCfg = Release
 		{AC670825-1300-4D4D-A193-140D3B36183C}.Release|x86.Build.0 = Release
+		{A2538634-371F-485E-B17C-D5568E662CF8}.Debug|x64.ActiveCfg = Debug|x86
+		{A2538634-371F-485E-B17C-D5568E662CF8}.Debug|x86.ActiveCfg = Debug|x86
+		{A2538634-371F-485E-B17C-D5568E662CF8}.Debug|x86.Build.0 = Debug|x86
+		{A2538634-371F-485E-B17C-D5568E662CF8}.Release|x64.ActiveCfg = Release|x86
+		{A2538634-371F-485E-B17C-D5568E662CF8}.Release|x86.ActiveCfg = Release|x86
+		{A2538634-371F-485E-B17C-D5568E662CF8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

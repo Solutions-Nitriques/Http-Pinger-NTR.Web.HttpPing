@@ -8,6 +8,7 @@ Namespace Messages
 
         Public Sub New(ByVal messagesWriter As AbstractMessagesWriter)
             _messagesWriter = messagesWriter
+
         End Sub
 
         Friend ReadOnly Property Writer As AbstractMessagesWriter
@@ -16,7 +17,12 @@ Namespace Messages
             End Get
         End Property
 
-        Friend MustOverride Sub Init(ByVal config As IConfigModel)
+        Friend Sub Init(ByVal Config As IConfigModel)
+            _messagesWriter.Init(Me, Config)
+        End Sub
+
+
+        Protected MustOverride Sub Initialisation(ByVal config As IConfigModel)
 
         Friend MustOverride Function SendMessage(ByVal message As IMessage, ByVal async As Boolean) As Boolean
 

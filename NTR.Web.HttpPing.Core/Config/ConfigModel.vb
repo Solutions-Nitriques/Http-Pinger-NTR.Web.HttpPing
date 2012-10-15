@@ -12,13 +12,6 @@
             End Get
         End Property
 
-        Private _Timeout As Integer = 1000
-        Public ReadOnly Property Timeout As Integer Implements IConfigModel.Timeout
-            Get
-                Return _Timeout
-            End Get
-        End Property
-
         Private _AdminsEmail As String
         Public ReadOnly Property AdminsEmail As String Implements IConfigModel.AdminsEmail
             Get
@@ -26,62 +19,78 @@
             End Get
         End Property
 
-        Private _Interval As Double
-        Public ReadOnly Property Interval As Double Implements IConfigModel.Interval
+        Private _pingRetryInterval As Integer
+        Public ReadOnly Property PingRetryInterval As Integer Implements IConfigModel.PingRetryInterval
             Get
-                Return _Interval
+                Return _pingRetryInterval
             End Get
         End Property
 
-        Private _MaxRetry As Integer
-        Public ReadOnly Property MaxRetry As Integer Implements IConfigModel.MaxRetry
+        Private _pingMaxRetry As Integer
+        Public ReadOnly Property PingMaxRetry As Integer Implements IConfigModel.PingMaxRetry
             Get
-                Return _MaxRetry
+                Return _pingMaxRetry
             End Get
         End Property
 
-        Private _MaxEmailSend As Integer
-        Public ReadOnly Property MaxEmailSend As Integer Implements IConfigModel.MaxEmailSend
+        Private _mailServerAddress As String
+        Public ReadOnly Property MailServerAddress As String Implements IConfigModel.MailServerAddr
             Get
-                Return _MaxEmailSend
+                Return _mailServerAddress
             End Get
         End Property
 
-        Private _MailServerAddr As String
-        Public ReadOnly Property MailServerAddr As String Implements IConfigModel.MailServerAddr
-            Get
-                Return _MailServerAddr
-            End Get
-        End Property
-
-        Private _MailServerPort As Integer
+        Private _mailServerPort As Integer
         Public ReadOnly Property MailServerPort As Integer Implements IConfigModel.MailServerPort
             Get
-                Return _MailServerPort
+                Return _mailServerPort
             End Get
         End Property
 
-        Friend Shared Function createModel( _
-                                 urls As Collections.ObjectModel.Collection(Of Uri),
-                                timeout As Integer,
-                                adminsEmail As String,
-                                interval As Double,
-                                maxRetry As Integer,
-                                maxEmailSend As Integer,
-                                mailServerAddr As String,
-                                mailServerPort As Integer
+        Private _processInterval As Long
+        Public ReadOnly Property ProcessInterval As Long Implements IConfigModel.ProcessInterval
+            Get
+                Return _processInterval
+            End Get
+        End Property
+
+        Private _pingTimeout As Integer
+        Public ReadOnly Property PingTimeout As Integer Implements Workers.IPingBatchWork.PingTimeout
+            Get
+                Return _pingTimeout
+            End Get
+        End Property
+
+        Private _UrlTimeLimit As Integer
+        Public ReadOnly Property UrlTimeLimit As Integer Implements IConfigModel.UrlTimeLimit
+            Get
+                Return _UrlTimeLimit
+            End Get
+        End Property
+
+        Public Shared Function createModel( _
+                                ByVal processInterval As Long,
+                                 ByVal urls As Collections.ObjectModel.Collection(Of Uri),
+                                 ByVal urlTimeLimit As Integer,
+                                ByVal adminsEmail As String,
+                                ByVal pingTimeout As Integer,
+                                ByVal pingRetryInterval As Integer,
+                                ByVal pingMaxRetry As Integer,
+                                ByVal mailServerAddress As String,
+                                ByVal mailServerPort As Integer
                                 ) As IConfigModel
 
             Dim result = New ConfigModel()
             With result
-                ._AdminsEmail = adminsEmail
-                ._Interval = interval
-                ._MailServerAddr = mailServerAddr
-                ._MailServerPort = mailServerPort
-                ._MaxEmailSend = maxEmailSend
-                ._MaxRetry = maxRetry
-                ._Timeout = timeout
+                ._processInterval = processInterval
                 ._Urls = urls
+                ._UrlTimeLimit = urlTimeLimit
+                ._AdminsEmail = adminsEmail
+                ._pingRetryInterval = pingRetryInterval
+                ._pingMaxRetry = pingMaxRetry
+                ._pingTimeout = pingTimeout
+                ._mailServerAddress = mailServerAddress
+                ._mailServerPort = mailServerPort
             End With
 
             Return result

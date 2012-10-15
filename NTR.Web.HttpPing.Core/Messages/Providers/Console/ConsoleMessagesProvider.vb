@@ -8,7 +8,7 @@ Namespace Messages
             MyBase.New(messagesWriter)
         End Sub
 
-        Friend Overrides Sub Init(ByVal config As IConfigModel)
+        Protected Overrides Sub Initialisation(ByVal config As IConfigModel)
             'nothing to do
         End Sub
 

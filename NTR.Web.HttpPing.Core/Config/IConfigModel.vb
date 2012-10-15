@@ -4,13 +4,15 @@ Namespace Config
 
     Public Interface IConfigModel : Inherits IPingBatchWork
 
-        ReadOnly Property AdminsEmail As String
+        ReadOnly Property ProcessInterval As Long
 
-        ReadOnly Property Interval As Double
+        ReadOnly Property AdminsEmail As String
 
         ReadOnly Property MailServerAddr As String
 
         ReadOnly Property MailServerPort As Integer
+
+        ReadOnly Property UrlTimeLimit As Integer
 
     End Interface
 

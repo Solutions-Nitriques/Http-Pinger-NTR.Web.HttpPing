@@ -4,10 +4,7 @@
     <Position X="1.812" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="NTR.Web.HttpPing.Core">
-    <Position X="6.229" Y="0.51" Height="0.75" Width="1.7" />
-  </Comment>
-  <Comment CommentText="NTR.Web.HttpPing.Core">
-    <Position X="10.552" Y="0.521" Height="0.75" Width="1.7" />
+    <Position X="3.885" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Class Name="NTR.Web.HttpPing.Service.PingService">
     <Position X="0.75" Y="3.75" Width="2.75" />
@@ -47,7 +44,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="NTR.Web.HttpPing.Messages.SimpleMessagesWriter" Collapsed="true">
-    <Position X="12.25" Y="9" Width="3.25" />
+    <Position X="12.25" Y="10" Width="3.25" />
     <TypeIdentifier />
   </Class>
   <Class Name="NTR.Web.HttpPing.Messages.SmtpMessageModel" Collapsed="true">

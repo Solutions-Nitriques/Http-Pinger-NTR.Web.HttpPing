@@ -3,7 +3,7 @@
     Public Interface IPingBatchWorker
 
         ReadOnly Property IsRunning As Boolean
-        Sub RunBatch(work As IPingBatchWork)
+        Function Run(ByVal work As IPingBatchWork) As IWorkResult
 
     End Interface
 

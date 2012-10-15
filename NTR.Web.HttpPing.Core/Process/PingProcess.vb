@@ -39,8 +39,6 @@ Namespace Process
         ''Dependance for sending email
         Private _messagesProvider As AbstractMessagesProvider
 
-        Private _messagesWriter As AbstractMessagesWriter
-
         ''The config model for the process, only accessible from descendant class if we want other behavior, will be instanciated by the config loader
         Private _configModel As IConfigModel
 
@@ -54,32 +52,41 @@ Namespace Process
             ''Init system
             _configModel = _configLoader.LoadConfigs()
             _messagesProvider.Init(_configModel)
+            _timer.Interval = _configModel.ProcessInterval
+            _batchWorker = New PingBatchWorker(New HttpPing.Pinger.HttpPinger())
         End Sub
 
         Private Sub Run()
-            If Not _timer.Enabled Then
-                _timer.Interval = _configModel.Interval
-                _timer.Start()
-
-                _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Starting, True)
-            End If
+            _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Starting, _configModel, True)
+            RunBatchOrStartTimer()
         End Sub
 
         Private Sub [Stop]()
-            If _timer.Enabled Then
-                _timer.Stop()
-                _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Stopping, False)
+            _timer.Stop()
+            _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Stopping, _configModel, False)
+        End Sub
+
+        Private Sub RunBatchOrStartTimer()
+            If (Not _batchWorker.IsRunning) Then
+                ''Start a new batch
+                ProcessBatchResult(_batchWorker.Run(_configModel))
+            End If
+            ''queue a new one with a new timer
+            StartTimer()
+        End Sub
+
+        Private Sub StartTimer()
+            If Not _timer.Enabled Then
+                _timer.Start()
             End If
         End Sub
 
         Private Sub _timer_Elapsed(ByVal sender As Object, ByVal e As System.Timers.ElapsedEventArgs) Handles _timer.Elapsed
-            If (Not _batchWorker.IsRunning) Then
-                ''Start a new batch
-                _batchWorker.RunBatch(_configModel)
-            Else
-                ''skip this run, queue a new one with a new timer
-                Run()
-            End If
+            RunBatchOrStartTimer()
+        End Sub
+
+        Private Sub ProcessBatchResult(ByVal workResult As IWorkResult)
+            _messagesProvider.Writer.WriteWorkStatusMessage(workResult, False)
         End Sub
 
 #End Region

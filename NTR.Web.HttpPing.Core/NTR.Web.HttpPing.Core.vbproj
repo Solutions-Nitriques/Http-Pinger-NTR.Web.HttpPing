@@ -98,6 +98,10 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\IPingerResult.vb" />
+    <Compile Include="Http\PingerResult.vb" />
+    <Compile Include="Messages\Providers\Smtp\SmtpTexteMessagesWriter_TimeLimit.vb" />
+    <Compile Include="Messages\Providers\Smtp\SmtpTextMessagesWriter_Differential.vb" />
     <Compile Include="Worker\BatchWorker.vb" />
     <Compile Include="Worker\PingUrlResult.vb" />
     <Compile Include="Worker\WorkResult.vb" />
@@ -120,7 +124,7 @@
     <Compile Include="Messages\Providers\Smtp\SimpleSmtpMessagesToSelector.vb" />
     <Compile Include="Messages\Providers\Smtp\SmtpMessagesFilter.vb" />
     <Compile Include="Messages\Providers\Console\ConsoleMessageWriter.vb" />
-    <Compile Include="Messages\Providers\Smtp\SmtpTextMessagesWriter.vb" />
+    <Compile Include="Messages\Providers\Smtp\SmtpTextMessagesWriter_Base.vb" />
     <Compile Include="Messages\Providers\Smtp\SmtpMessageModel.vb" />
     <Compile Include="Messages\Providers\Smtp\SmtpMessagesProvider.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

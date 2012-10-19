@@ -3,7 +3,7 @@ Imports NTR.Web.HttpPing.Config
 
 Public Class SmtpMessagesFilter_Differential : Implements IMessagesFilter
 
-    Public Function FilterProcessStatusMessage(ByVal messageType As Messages.ProcessMessageType) As Boolean Implements IMessagesFilter.FilterProcessStatusMessage
+    Public Function FilterProcessStatusMessage(ByVal messageType As Messages.ProcessMessageType, ByVal config As IConfigModel) As Boolean Implements IMessagesFilter.FilterProcessStatusMessage
         Return True
     End Function
 
@@ -19,8 +19,21 @@ End Class
 
 Public Class SmtpMessagesFilter_TimeLimit : Implements IMessagesFilter
 
-    Public Function FilterProcessStatusMessage(ByVal messageType As Messages.ProcessMessageType) As Boolean Implements IMessagesFilter.FilterProcessStatusMessage
-        Return True
+    Private _lastSendMessageDate As DateTime
+
+    Private Sub updateLastSendMessageDate(ByVal result As Boolean)
+        If (result) Then
+            _lastSendMessageDate = Now
+        End If
+    End Sub
+
+    Public Function FilterProcessStatusMessage(ByVal messageType As Messages.ProcessMessageType, ByVal config As IConfigModel) As Boolean Implements IMessagesFilter.FilterProcessStatusMessage
+        Dim result As Boolean = True
+        If (messageType = Messages.ProcessMessageType.Running) Then
+            result = _lastSendMessageDate.AddHours(config.MaxHoursNoEmail) < Now
+        End If
+        updateLastSendMessageDate(result)
+        Return result
     End Function
 
     Private _lastErrorEmailSend As DateTime = DateTime.MinValue
@@ -76,7 +89,9 @@ Public Class SmtpMessagesFilter_TimeLimit : Implements IMessagesFilter
             _lastErrorEmailSend = DateTime.MinValue
             _lastWorkResultErrorEmailSend = Nothing
         End If
-        Return (hasSiteGoingUp OrElse hasErrorEmail)
+        Dim result As Boolean = (hasSiteGoingUp OrElse hasErrorEmail)
+        updateLastSendMessageDate(result)
+        Return result
     End Function
 
     Public Function FilterUrlStatusMessage(ByVal urlResult As IPingUrlResult) As Boolean Implements IMessagesFilter.FilterUrlStatusMessage

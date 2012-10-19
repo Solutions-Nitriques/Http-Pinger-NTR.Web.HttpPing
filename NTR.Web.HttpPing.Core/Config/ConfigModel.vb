@@ -77,7 +77,8 @@
                                 ByVal pingRetryInterval As Integer,
                                 ByVal pingMaxRetry As Integer,
                                 ByVal mailServerAddress As String,
-                                ByVal mailServerPort As Integer
+                                ByVal mailServerPort As Integer,
+                                ByVal maxHoursNoEmail As Integer
                                 ) As IConfigModel
 
             Dim result = New ConfigModel()
@@ -91,11 +92,18 @@
                 ._pingTimeout = pingTimeout
                 ._mailServerAddress = mailServerAddress
                 ._mailServerPort = mailServerPort
+                ._maxHoursNoEmail = maxHoursNoEmail
             End With
 
             Return result
         End Function
 
+        Private _maxHoursNoEmail As Integer
+        Public ReadOnly Property MaxHoursNoEmail As Integer Implements IConfigModel.MaxHoursNoEmail
+            Get
+                Return _maxHoursNoEmail
+            End Get
+        End Property
     End Class
 
 End Namespace

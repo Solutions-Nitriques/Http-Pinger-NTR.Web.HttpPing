@@ -14,16 +14,22 @@ Namespace Messages
             MyBase.New(messagesfilter)
         End Sub
 
+        Private _startedDate As DateTime
+
         Protected Overrides Function CreateProcessMessage(ByVal messageType As ProcessMessageType, ByVal config As IConfigModel) As IMessage
             Dim subject As String = String.Empty
             Dim body As String = String.Empty
             Select Case messageType
                 Case ProcessMessageType.Starting
+                    _startedDate = Now
                     subject = "INFO : HttpPing is UP"
-                    body = String.Format("HttpPing has started at {0:dd-MM-yyyy HH:mm:ss} on {1}", Now, Environment.MachineName)
+                    body = String.Format("HttpPing has started at {0:dd-MM-yyyy HH:mm:ss} on {1}", _startedDate, Environment.MachineName)
                 Case ProcessMessageType.Stopping
                     subject = String.Format("WARN: HttpPing is DOWN")
                     body = String.Format("HttpPing has stopped  at {0:dd-MM-yyyy HH:mm:ss} on {1}", Now, Environment.MachineName)
+                Case ProcessMessageType.Running
+                    subject = String.Format("INFO: HttpPing is still running")
+                    body = String.Format("HttpPing has started {0:dd-MM-yyyy HH:mm:ss} on {1}", _startedDate, Environment.MachineName)
             End Select
 
             Return New MessageModel(subject, body)

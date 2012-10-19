@@ -14,6 +14,9 @@ Namespace Config
 
         ReadOnly Property UrlTimeLimit As Integer
 
+        ReadOnly Property MaxHoursNoEmail As Integer
+
+
     End Interface
 
 End Namespace

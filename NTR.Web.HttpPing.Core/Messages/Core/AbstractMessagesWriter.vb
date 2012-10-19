@@ -32,8 +32,7 @@ Namespace Messages
         Public Sub WriteProcessMessage(ByVal messageType As ProcessMessageType, ByVal config As IConfigModel, ByVal async As Boolean)
             If _messagesProvider IsNot Nothing Then
                 ''Send the message
-                If (_messagesFilter.FilterProcessStatusMessage(messageType)) Then
-
+                If (_messagesFilter.FilterProcessStatusMessage(messageType, config)) Then
                     _messagesProvider.SendMessage(CreateProcessMessage(messageType, config), async)
                 End If
             End If
@@ -148,7 +147,7 @@ Namespace Messages
 
         Private Class NoFilterMessage : Implements IMessagesFilter
 
-            Public Function FilterProcessStatusMessage(ByVal messageType As ProcessMessageType) As Boolean Implements IMessagesFilter.FilterProcessStatusMessage
+            Public Function FilterProcessStatusMessage(ByVal messageType As ProcessMessageType, ByVal config As IConfigModel) As Boolean Implements IMessagesFilter.FilterProcessStatusMessage
                 Return True
             End Function
 

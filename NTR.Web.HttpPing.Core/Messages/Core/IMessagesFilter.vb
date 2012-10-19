@@ -4,7 +4,7 @@ Imports NTR.Web.HttpPing.Config
 
 Public Interface IMessagesFilter
 
-    Function FilterProcessStatusMessage(ByVal messageType As ProcessMessageType) As Boolean
+    Function FilterProcessStatusMessage(ByVal messageType As ProcessMessageType, ByVal config As IConfigModel) As Boolean
 
     Function FilterWorkStatusMessage(ByVal workResult As IWorkResult, ByVal lastWorkResult As IWorkResult, ByVal config As IConfigModel) As Boolean
 

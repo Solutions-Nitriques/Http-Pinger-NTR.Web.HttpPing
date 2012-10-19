@@ -69,6 +69,7 @@ Namespace Process
         Private Sub RunBatchOrStartTimer()
             If (Not _batchWorker.IsRunning) Then
                 ''Start a new batch
+                _messagesProvider.Writer.WriteProcessMessage(ProcessMessageType.Running, _configModel, False)
                 ProcessBatchResult(_batchWorker.Run(_configModel))
             End If
             ''queue a new one with a new timer

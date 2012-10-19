@@ -30,6 +30,7 @@ Namespace Config
             Dim _adminsEmail As String = Nothing
             Dim _urlTimeLimit As Integer = 5  'Minutes
             Dim _Urls As New Collections.ObjectModel.Collection(Of Uri)
+            Dim _MaxHoursNoEmail As Integer = 24
 
             ''Load file
             doc.Load(configFilePath)
@@ -76,13 +77,18 @@ Namespace Config
                 _adminsEmail = node.InnerText
             End If
 
+            node = doc.SelectSingleNode("/config/maxHoursNoEmail")
+            If node IsNot Nothing Then
+                Integer.TryParse(node.InnerText, _MaxHoursNoEmail)
+            End If
+
             Dim urls As Xml.XmlNodeList = doc.SelectNodes("/config/urls/url")
             For Each url As Xml.XmlNode In urls
                 _Urls.Add(New Uri(url.InnerText))
             Next
 
             ''Create the new model and return it
-            Return ConfigModel.createModel(_processInterval, _Urls, _urlTimeLimit, _adminsEmail, _pingTimeout, _pingRetryInterval, _pingMaxRetry, _mailServerAddr, _mailServerPort)
+            Return ConfigModel.createModel(_processInterval, _Urls, _urlTimeLimit, _adminsEmail, _pingTimeout, _pingRetryInterval, _pingMaxRetry, _mailServerAddr, _mailServerPort, _MaxHoursNoEmail)
         End Function
 
 #End Region
